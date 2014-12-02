@@ -1,4 +1,10 @@
-<?php ?>
+<?php if (count($_POST) > 0) : ?>
+<?php var_dump($_POST)?>
+    <?php $answer = array(
+        1 => array('a', 'b', 'c', 'd'),
+        2 => array('a'),
+    ); ?>
+<?php endif; ?>
 <div class="header">
     <nav>
         <ul class="nav nav-pills pull-right">
@@ -8,8 +14,7 @@
     <h3 class="text-muted">PHP Basic 01</h3>
     <hr>
 </div>
-
-<form action="" method="post">
+<form action="" method="post">    
     <div>
         <p class="text-muted">1. Which are ways to start a php script?</p>
         <input type="checkbox" name="p1[]" value="a"/> <?php echo htmlspecialchars('<?php ?>') ?>
@@ -31,6 +36,7 @@
         <br/>
         <input type="radio" name="p2" value="d" /> <?php echo htmlspecialchars('<? ?>') ?>
     </div>
-</div>
-<hr>
+    <hr>
+
+    <button type="submit" class="btn btn-default">Submit</button>
 </form>
