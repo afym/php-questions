@@ -60,3 +60,36 @@ class Render {
     }
 
 }
+
+class CheckAnswer {
+
+    const SUCCESS = '<span class="label label-success">Correct answer</span>';
+    const DANGER = '<span class="label label-danger">Wrong answer</span>';
+
+    private static $answers;
+    private static $score;
+
+    public static function setAnswers($answers) {
+        static::$answers = $answers;
+    }
+
+    public static function showAnswer($questionNumber) {
+        if (isset($_POST) && isset($_POST["p{$questionNumber}"])) {
+            $value = $_POST["p{$questionNumber}"];
+            // Si la pregunta tiene una sola respuesta
+
+            if (is_string($value) && $value != '') {
+                return $value == static::$answers[$questionNumber] ? self::SUCCESS : self::DANGER;
+            } else if (is_array($value) && count($value) > 0) {
+                $diff = array_diff($value, static::$answers[$questionNumber]);
+                return empty($diff) ? self::SUCCESS : self::DANGER;
+            }
+        } 
+
+        return '';
+    }
+
+    public function getScore() {
+        
+    }
+}
